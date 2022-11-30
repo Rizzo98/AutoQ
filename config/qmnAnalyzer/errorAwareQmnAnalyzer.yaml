@@ -1,0 +1,6 @@
+qmnAnalyzer:
+  _target_: src.quantization.ErrorAwareQmnAnalyzer
+  inputs: /home/arizzardi/FCN_SBD/data/train/X
+  model: ${model}
+  num_files: 5
+  img_size: 224

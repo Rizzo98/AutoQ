@@ -1,0 +1,4 @@
+regressor:
+  _target_: src.regressor.RFRegressor
+  n_estimators: 500
+  max_features: sqrt

@@ -1,0 +1,10 @@
+defaults:
+  - _self_
+  - qmnAnalyzer: errorAwareQmnAnalyzer
+  - model: MobileFCN
+  - dataset: SBD
+  - explorer: randomExplorer
+  - regressor: randomForestRegressor
+  
+bitSpace: [16]
+gpu: 1

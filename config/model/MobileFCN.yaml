@@ -1,0 +1,3 @@
+model:
+  _target_: src.models.MobileFCN
+  model_path: /home/arizzardi/FCN_SBD/export/fcn_mobilenet_60Epochs

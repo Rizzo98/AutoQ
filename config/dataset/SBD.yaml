@@ -1,0 +1,8 @@
+dataset:
+  _target_: src.datasets.SBD
+  path_X: /home/arizzardi/FCN_SBD/data/validation/X
+  path_Y: /home/arizzardi/FCN_SBD/data/validation/Y
+  batch_size: 64
+  numImages: 128
+  image_size: 224
+  gray_scale: false

@@ -1,0 +1,7 @@
+explorer:
+  _target_: src.QExplorer.RandomExplorer
+  data: ${dataset}
+  model: ${model}
+  sample_sizes: [10,20]
+  batch_per_sample_size: [15,15]
+  bit_space: ${bitSpace}
