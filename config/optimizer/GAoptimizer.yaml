@@ -1,0 +1,7 @@
+optimizer:
+  _target_: src.optimizers.GAOptimizer
+  _partial_: true
+  bitSpace: ${bitSpace}
+  model: ${model}
+  epsilon: 0.01
+  sol_per_pop: 16

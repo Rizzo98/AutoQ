@@ -1,0 +1,8 @@
+qkeras
+numpy
+tensorflow
+pygad
+PIL
+scipy
+omegaconf
+hydra

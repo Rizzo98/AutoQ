@@ -50,7 +50,7 @@ class ErrorAwareQmnAnalyzer(QmnAnalyzer):
     
     def compute_accuracies(self, data, bit_space):
         from src.quantization import Quantizer
-        self.layers_names = [l.name for l in self.model.layers]
+        self.layers_names = [l.name for l in self.model.layers if l.__class__.__name__ not in self.__activations]
         accs = dict([(l,[None for _ in range(len(bit_space))]) for l in self.layers_names])
         for l in tqdm(self.layers_names,desc='Gettin layer accs'): 
             for i,b in enumerate(bit_space):

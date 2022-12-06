@@ -5,6 +5,7 @@ defaults:
   - dataset: SBD
   - explorer: randomExplorer
   - regressor: randomForestRegressor
+  - optimizer: GAoptimizer
   
 bitSpace: [16]
 gpu: 1
