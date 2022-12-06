@@ -23,5 +23,25 @@ class GoodSampleExplorer(Explorer):
         for i,layer_name in enumerate(self.layers_names):
             index = i*len(self.bit_space)
             bit_in_layer = i%len(self.bit_space)
-            #TODO: x[index+bit_in_layer] = self.alpha*self.accuracies[layer_name][bit_in_layer]-self.beta*self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name]['']-self.gamma*out_fraction_error_per_layer[layer_name][0]-self.eta*weight_clipping_error_per_layer[layer_name][0]-self.eps*weight_fraction_error_per_layer[layer_name][0]
+            out_clipping_error, out_fraction_error, weight_clipping_error, weight_fraction_error = 0,0,0,0
+            count=0
+            for k in self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name].keys():
+                if type(self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name][k])==dict:
+                    if 'error' in self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name][k]:
+                        if k =='out_quantizer':
+                            out_clipping_error += self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name][k]['error']['clipped_vals']
+                            out_fraction_error += self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name][k]['error']['fraction_error']
+                        else:
+                            count+=1
+                            weight_clipping_error += self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name][k]['error']['clipped_vals']
+                            weight_fraction_error += self.qmnAnalyses[self.bit_space[bit_in_layer]][layer_name][k]['error']['fraction_error']
+            weight_clipping_error/=count
+            weight_fraction_error/=count
+
+            x[index+bit_in_layer] = \
+                self.alpha*self.accuracies[layer_name][bit_in_layer]-\
+                self.beta*out_clipping_error-\
+                self.gamma*out_fraction_error-\
+                self.eta*weight_clipping_error-\
+                self.eps*weight_fraction_error
         return x

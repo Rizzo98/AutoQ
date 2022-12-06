@@ -43,7 +43,7 @@ class Explorer:
                 indexes = np.random.choice(len(self.layer_bits),sample_size,replace=False,p=p)
                 selected = self.layer_bits[indexes]
                 i_conf = dict()
-                for name,bit in selected: i_conf[name] = self.qmnAnalyses[bit][name]
+                for name,bit in selected: i_conf[name] = self.qmnAnalyses[int(bit)][name]
                 q = Quantizer(self.model, i_conf).quantize(custom_object=self.model.custom_object)
                 q.compile()
                 y_ = float(q.evaluate(self.data,verbose=0)[1])
